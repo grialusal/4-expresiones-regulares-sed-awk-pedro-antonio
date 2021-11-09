@@ -17,7 +17,7 @@ Usando el fichero `aquella_voluntad.txt`, identifica usando grep:
 2. El número de líneas que terminan por `o` o por `a`. 
 3. El número de líneas pares que terminan por `o` o por `a`
 4. Todas las palabras que empiezan y acaban por `s` (ordenadas alfabéticamente)
-5. Todas las palabras que no empiezan por t y acaban por `s`. (ordenadas por número de línea)
+5. Todas las palabras que no empiezan por `t` y acaban por `s`. (ordenadas por número de línea)
 6. Todas las palabras que empiezan y acaban por la misma letra (volver a este punto al acabar toda la lección). 
 
 ### Respuesta ejercicio 1
