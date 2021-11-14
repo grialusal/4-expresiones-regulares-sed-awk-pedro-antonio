@@ -29,6 +29,14 @@ Podríamos sumar las líneas que acaban por "a" y las que acaban por "b" y obten
 
 3. El número de líneas pares que terminan por `o` o por `a`
 
+Para calcular el número de lineas pares, empezando por la primera línea como si fuese la línea 0 usaremos el comando `awk 'NR % 2' aquella_voluntad.txt`
+
+Tras esto haremos un pipe con grep, que será:
+
+`awk 'NR % 2' aquella_voluntad.txt|grep -cE ".*o$|.a$"`
+
+
+![awkNRgrep](images/awkNRgrep.png)
 
 
 4. Todas las palabras que empiezan y acaban por `s` (ordenadas alfabéticamente)
@@ -62,4 +70,8 @@ Al final, para cada secuencia, imprimirá su nombre y el número de caracteres q
 En la sección 3.1., convertimos la cadena `chr1:3214482-3216968` a un formato tabular con `sed`. Sin embargo, existen otras maneras en las que podríamos haber obtenido el mismo resultado final. ¿Se te ocurren algunas? Recuerda que puedes usar el flag `g`, o puedes encadenar distintas llamadas a `sed` con tuberías si ves que meterlo todo en una única expresión regular se te antoja complicado. 
 
 ### Respuesta ejercicio 4
+Para hacer este ejercicio empleando el flag `g` de `sed` lo podríamos hacer de la siguiente forma: 
+`echo "chr1:3214482-3216968"|sed -E 's/[:-]/\t/g'`
+Con este pipe en primer lugar lo que estamos haciendo es con echo mostrar a la salida estándar el texto que hemos introducido, y en la segunda parte del pipe con sed lo que hacemos es que nos sustituya `s` los `:` y `-` por un tabulador `\t` . Finalmente tenemos que emplear el flag `g` ya que si no solo nos hará el cambio de la primera ocurrencia `:` por el tabulador `\t` , pero no de la segunda ocurrencia `-`.
 
+![echoSedEg](images/echoSedEg.png)
