@@ -29,6 +29,14 @@ Podríamos sumar las líneas que acaban por "a" y las que acaban por "b" y obten
 
 3. El número de líneas pares que terminan por `o` o por `a`
 
+Para calcular el número de lineas pares, empezando por la primera línea como si fuese la línea 0 usaremos el comando `awk 'NR % 2' aquella_voluntad.txt`
+
+Tras esto haremos un pipe con grep, que será:
+
+`awk 'NR % 2' aquella_voluntad.txt|grep -cE ".*o$|.a$"`
+
+
+![awkNRgrep](images/awkNRgrep.png)
 
 
 4. Todas las palabras que empiezan y acaban por `s` (ordenadas alfabéticamente)
