@@ -66,4 +66,4 @@ Para hacer este ejercicio empleando el flag `g` de `sed` lo podríamos hacer de 
 `echo "chr1:3214482-3216968"|sed -E 's/[:-]/\t/g'`
 Con este pipe en primer lugar lo que estamos haciendo es con echo mostrar a la salida estándar el texto que hemos introducido, y en la segunda parte del pipe con sed lo que hacemos es que nos sustituya `s` los `:` y `-` por un tabulador `\t` . Finalmente tenemos que emplear el flag `g` ya que si no solo nos hará el cambio de la primera ocurrencia `:` por el tabulador `\t` , pero no de la segunda ocurrencia `-`.
 
-![grepcEoa](images/grepcEoa.PNG)
+![echoSedEg](images/echoSedEg.png)
