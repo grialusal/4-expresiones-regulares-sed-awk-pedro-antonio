@@ -14,10 +14,30 @@ Cuando hayas acabado, haz un commit de tus cambios y súbelos al repositorio ant
 Usando el fichero `aquella_voluntad.txt`, identifica usando grep:
 
 1. El número de líneas que terminan por `o`. 
+
+En primer lugar para obtener el resultado del número de líneas acabadas en "o" con grep, hacemos uso de las expresiones regulares de la siguiente manera: 
+`grep -cE ".*o$" aquella_voluntad.txt`
+El resultado de líneas que nos salen que acaban por "o" son 60. 
+
 2. El número de líneas que terminan por `o` o por `a`. 
+Ya tenemos del ejercicio anterior cuatas líneas terminan por "o", para saber las que terminan por "a" usaremos este comando: 
+`grep -cE ".*a$" aquella_voluntad.txt`
+Podríamos sumar las líneas que acaban por "a" y las que acaban por "b" y obtener el resultado, pero también lo podemos hacer directamente con el siguiente comando: 
+`grep -cE ".*o$|.a$" aquella_voluntad.txt`
+
+![grepcEoa](images/grepcEoa.PNG)
+
 3. El número de líneas pares que terminan por `o` o por `a`
+
+
+
 4. Todas las palabras que empiezan y acaban por `s` (ordenadas alfabéticamente)
+
+
 5. Todas las palabras que no empiezan por `t` y acaban por `s`. (ordenadas por número de línea)
+
+
+
 6. Todas las palabras que empiezan y acaban por la misma letra (volver a este punto al acabar toda la lección). 
 
 ### Respuesta ejercicio 1
