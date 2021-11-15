@@ -43,12 +43,15 @@ Tras esto haremos un pipe con grep, que será:
 
 Para encontrar todas las palasbras que empiecen y acaben por `s` empleando el comando grep, empleamos el siguiente comando: 
 
-`grep -Eio "[^(A-Za-z)]s\w+s" aquella_voluntad.txt|sort`
+`grep -Eio '\bs\w*s\b' aquella_voluntad.txt|sort`
 
-
+![grepeioSSsort](images/grepeioSSsort.png)
 Ahora vamos a explicar este comando: 
 - El flag `-E`(extended) indica a `grep`que use  ERE (Expresiones Regulares Extendidas). 
-- El flag `-i` 
+- El flag `-i` para una búsqueda case-insensitive, lo que quiere decir que buscará tanto mayúsculas como minúsculas. 
+- El flag `-o` para que imprima por pantalla las líneas coincidentes, palabras que coinciden con la expresión regular que hemos puesto. 
+
+Con este comando le decimos a grep que busque aquellas palabras que empiecen por "s" y que vayan segidas de caracteres de tipo palabra (letras, dígitos, o guión bajo) 
 
 5. Todas las palabras que no empiezan por `t` y acaban por `s`. (ordenadas por número de línea)
 
