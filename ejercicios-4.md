@@ -65,7 +65,7 @@ En el caso del gtf de Humano, para comprobar cuántos gene_id con dos o más cer
  
 ![geneid-humano](images/geneid-humano.PNG)
 
-Para comprobar cuántas veces se repite cada gene_id con dós o más ceros y cuáles son estos eliminamos la opción -c del último grep del pipeline y añadimos `uniq -c` al final del mismo, sin embargo antes de uniq -c hay que poner el comando `sort` ya que si no se pasan los datos ordenados al comando uniq-c ete podría tener un comportamiento inesperado. De esta forma que quedarían los siguientes pipelines:
+Para comprobar cuántas veces se repite cada gene_id con dós o más ceros y cuáles son estos eliminamos la opción -c del último grep del pipeline y añadimos `uniq -c` al final del mismo, sin embargo antes de uniq -c hay que poner el comando `sort` ya que si no se pasan los datos ordenados al comando uniq -c ete podría tener un comportamiento inesperado. De esta forma que quedarían los siguientes pipelines:
 
 --- Drosophila: `grep -Eo 'gene_id "[^"]*"' Drosophila_melanogaster.BDGP6.28.102.gtf | grep -Eo 'gene_id ".*0{2,}.*"' | sort | uniq -c > geneid-drosophila.txt`, Hemos introducdo al final del pipeline `> geneid-drosophila.txt` para desviar la stdout a un archivo txt que contenga los gene_id, dicho archivo está adjunto aquí: [geneid-drosophila.txt](documents/geneid-drosophila.txt).
 
@@ -76,7 +76,7 @@ Finalmente, para para ver si existen otros gene_ids con muchos números seguidos
 ![number-repeat](images/number-repeat.PNG)
 
 Para comprobar cuántos gene_id con muchos números seguidos iguales exiten en el caso de Humano, hemos introducido el siguiente pipeline: `zgrep -Eo 'gene_id "[^"]*"' Homo_sapiens.GRCh38.102.gtf.gz | grep -Eoc 'gene_id ".*(0{2,}|1{2,}|2{2,}|3{2,}|4{2,}|5{2,}|6{2,}|7{2,}|8{2,}|9{2,
-}).*"'`, en este caso existen 3010595 gene_id con números iguales repetidos 2 o más veces.
+}).*"'`, en este caso existen 3010595 gene_id con números iguales repetidos 2 o más veces, este número coincide con el de gene_id que tienen 2 o más ceros, por lo tanto podemos deducir que no hay gene_id en este documento que tengan números iguales seguidos dos o más veces que sean distintos a 0.
 
 ## Ejercicio 3
 
