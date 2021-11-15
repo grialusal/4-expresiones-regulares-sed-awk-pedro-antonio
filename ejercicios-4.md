@@ -40,13 +40,17 @@ Tras esto haremos un pipe con grep, que será:
 
 
 4. Todas las palabras que empiezan y acaban por `s` (ordenadas alfabéticamente)
-
+`grep -Eio "[^(A-Za-z)]s\w+s" aquella_voluntad.txt|sort`
 
 5. Todas las palabras que no empiezan por `t` y acaban por `s`. (ordenadas por número de línea)
 
 
+`grep -Eio "[^(t)]a\w+s" aquella_voluntad.txt -n|sort -n`
+
 
 6. Todas las palabras que empiezan y acaban por la misma letra (volver a este punto al acabar toda la lección). 
+
+
 
 ### Respuesta ejercicio 1
 
