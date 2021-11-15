@@ -57,6 +57,26 @@ Explora el fichero de anotaciones para ver si existen otros gene_ids con muchos 
 
 ### Respuesta ejercicio 2
 
+En el caso del gtf de Drosophila, para comprobar cuántos gene_id con dos o más ceros seguidos existen hemos introducido el siguiente pipeline: `grep -Eo 'gene_id "[^"]*"' Drosophila_melanogaster.BDGP6.28.102.gtf | grep -Eoc 'gene_id ".*0{2,}.*"'`, en primer lugar indicamos a grep que envíe a la stdout solamente la parte del archivo que coincida con el patrón especificado entre '', esto se consigue con la opción -o, después le indicamos a grep que muestre solo la parte de del texto coincidente con `gene id` seguido de espacio y comillas, no obstante, para evitar un comportamiento greedy y que grep seleccione toda la línea le especificamos que seleccione cero o más caracteres entre comillas que no sean comillas con la expresión regular `[^"]*`. Una vez seleccionados los gene_id desviamos mediante un pipeline la stdout del comando anterior a grep de nuevo, en este caso para que seleccione solo los gene_id que tienen  entre comillas 2 o más ceros seguidos, esto se consigue mediante la siguiente expresión regular: `0{2,}` además, añadimos `.*` para indicar que además de 0 puede haber ninguno o n caracteres diferentes ya que los gene_id tienen además otros numeros distindos de 0 y letras, finalmente para contar cuántos gene_id hay con 2 o más ceros seguidos hemos introducdo la opción -c (-Eoc) al último grep del pipeline. El resultado de este pipeline indica que hay 422887 gene_id con 2 o más ceros seguidos.
+
+![geneid-drosophila](images/geneid-drosophila.PNG)
+
+En el caso del gtf de Humano, para comprobar cuántos gene_id con dos o más ceros seguidos existen hemos introducido el siguiente pipeline: `zgrep -Eo 'gene_id "[^"]*"' Homo_sapiens.GRCh38.102.gtf.gz | grep -Eoc 'gene_id ".*0{2,}.*"'`, la única diferencia con el pipeline que empleamos en Drosophila es que como el gtf de Homo_sapiens está comprimido (formato.gz) debemos emplear al principio del pipeline el comando zgrep, que es capaz de trabajar con archivos comprimidos. En este caso el número de gene_id que tienen 2 o más ceros es de 3010595.
+ 
+![geneid-humano](images/geneid-humano.PNG)
+
+Para comprobar cuántas veces se repite cada gene_id con dós o más ceros y cuáles son estos eliminamos la opción -c del último grep del pipeline y añadimos `uniq -c` al final del mismo, sin embargo antes de uniq -c hay que poner el comando `sort` ya que si no se pasan los datos ordenados al comando uniq-c ete podría tener un comportamiento inesperado. De esta forma que quedarían los siguientes pipelines:
+
+--- Drosophila: `grep -Eo 'gene_id "[^"]*"' Drosophila_melanogaster.BDGP6.28.102.gtf | grep -Eo 'gene_id ".*0{2,}.*"' | sort | uniq -c > geneid-drosophila.txt`, Hemos introducdo al final del pipeline `> geneid-drosophila.txt` para desviar la stdout a un archivo txt que contenga los gene_id, dicho archivo está adjunto aquí: [geneid-drosophila.txt](documents/geneid-drosophila.txt).
+
+--- Humano: `zgrep -Eo 'gene_id "[^"]*"' Homo_sapiens.GRCh38.102.gtf.gz | grep -Eo 'gene_id ".*0{2,}.*"' | sort | uniq -c > geneid-human.txt`, Hemos introducdo al final del pipeline `> geneid-human.txt` para desviar la stdout a un archivo txt que contenga los gene_id, dicho archivo está adjunto aquí: [geneid-human.txt](documents/geneid-human.txt).
+
+Finalmente, para para ver si existen otros gene_ids con muchos números seguidos iguales hemos introducido el siguiente pipeline en el caso de Drosophila: `grep -Eo 'gene_id "[^"]*"' Drosophila_melanogaster.BDGP6.28.102.gtf | grep -Eoc 'gene_id ".*(0{2,}|1{2,}|2{2,}|3{2,}|4{2,}|5{2,}|6{2,}|7{2,}|8{2,}|9{2,}).*"'`, los | están indicando que encuentre un patrón que tenga 2 o más ceros (`0{2,}`) o (`|`) que tenga 2 o más unos (`1{2,}`) o que tenga dos o más treses y así sucesivamente hasta 9. En el caso de Drosophila existen 465042 gene_id con números iguales repetidos 2 o más veces. En la siguiente imágen se puede apreciar un extracto de la salida resultante de ejecutar este pipeline sustituyendo los `{2,}` por `{4,}` de forma que se aprecian gene_id con cinco 6 seguidos y con cuatro 0 seguidos, esto a modo de prueba para demostrar que este comando funciona:
+
+![number-repeat](images/number-repeat.PNG)
+
+Para comprobar cuántos gene_id con muchos números seguidos iguales exiten en el caso de Humano, hemos introducido el siguiente pipeline: `zgrep -Eo 'gene_id "[^"]*"' Homo_sapiens.GRCh38.102.gtf.gz | grep -Eoc 'gene_id ".*(0{2,}|1{2,}|2{2,}|3{2,}|4{2,}|5{2,}|6{2,}|7{2,}|8{2,}|9{2,
+}).*"'`, en este caso existen 3010595 gene_id con números iguales repetidos 2 o más veces.
 
 ## Ejercicio 3
 
