@@ -51,13 +51,15 @@ Ahora vamos a explicar este comando:
 - El flag `-i` para una búsqueda case-insensitive, lo que quiere decir que buscará tanto mayúsculas como minúsculas. 
 - El flag `-o` para que imprima por pantalla las líneas coincidentes, palabras que coinciden con la expresión regular que hemos puesto. 
 
-Con este comando le decimos a grep que busque aquellas palabras que empiecen por "s" y que vayan segidas de caracteres de tipo palabra (letras, dígitos, o guión bajo) 
+Con este comando le decimos a grep que busque aquellas palabras que empiecen por "s" y que vayan segidas de caracteres de tipo palabra (letras, dígitos, o guión bajo) y finalmente que acaben por "s". La b indicaría u  separador de palabras "espacio". 
+
 
 5. Todas las palabras que no empiezan por `t` y acaban por `s`. (ordenadas por número de línea)
 
 
 `grep -Eio "[^(t)]a\w+s" aquella_voluntad.txt -n|sort -n`
 
+grep -Eion '\b[^t]\w*s\b' aquella_voluntad.txt |sort -n
 
 6. Todas las palabras que empiezan y acaban por la misma letra (volver a este punto al acabar toda la lección). 
 
