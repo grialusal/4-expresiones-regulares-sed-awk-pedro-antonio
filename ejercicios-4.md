@@ -40,7 +40,15 @@ Tras esto haremos un pipe con grep, que será:
 
 
 4. Todas las palabras que empiezan y acaban por `s` (ordenadas alfabéticamente)
+
+Para encontrar todas las palasbras que empiecen y acaben por `s` empleando el comando grep, empleamos el siguiente comando: 
+
 `grep -Eio "[^(A-Za-z)]s\w+s" aquella_voluntad.txt|sort`
+
+
+Ahora vamos a explicar este comando: 
+- El flag `-E`(extended) indica a `grep`que use  ERE (Expresiones Regulares Extendidas). 
+- El flag `-i` 
 
 5. Todas las palabras que no empiezan por `t` y acaban por `s`. (ordenadas por número de línea)
 
