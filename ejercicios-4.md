@@ -102,6 +102,15 @@ Al final, para cada secuencia, imprimirá su nombre y el número de caracteres q
 
 ### Respuesta ejercicio 3
 
+Para realizar el ejercicio he descargado el archivo fasta del gen notch1 de la base de datos del NCBI. El pipeline que he empleado para convertir este fichero con múltiples saltos de línea en uno que no tenga saltos de línea es el siguiente: `cat notch1.fasta | tr -d '\n'`, con la opción -d le indicamos a tr que elimine el salto de línea.
+
+![tr](images/tr.PNG)
+
+Para seleccionar e imprimir el nombre de la única secuencia que contiene el fichero he empleado el siguiente comando: `grep -E '(^>.*[^>]+)' notch1.fasta`, `^>` indica que seleccione todas las líneas que empiezan por > ya que en estos ficheros el nombre de la secuencia empieza por >, además se añade `.*` para indicar a grep que continúe seleccionando cualquier caracter y `[^>]+` para indicar que la línea debe acabar por cualquier caracter que no sea > y evitar así el comportamiento greedy del comando grep.
+
+Finalmente para contar el número de caracteres que tiene esta secuencia hemos empleado el sguiente pipeline: `grep -E  '(^[ATGCN][^>])' notch1.fasta | tr -d '\n' | wc`, con `grep` estamos especificando que seleccione solo las líneas que empiecen por ATGCN y que no tengan el caracter >, de manera que se selecciona solo la secuencia excluyendo el nombre de la misma, después se eliminan los saltos de línea con el comando `tr` tal y como he explicado en el primer apartado del ejercicio y finalmente se emplea el comando `wc` para mostrar el número de caracteres que tiene la secuencia, concretamente tiene 51616 caracteres.
+
+![nombre-palabras](images/nombre-palabras.PNG)
 
 ## Ejercicio 4
 En la sección 3.1., convertimos la cadena `chr1:3214482-3216968` a un formato tabular con `sed`. Sin embargo, existen otras maneras en las que podríamos haber obtenido el mismo resultado final. ¿Se te ocurren algunas? Recuerda que puedes usar el flag `g`, o puedes encadenar distintas llamadas a `sed` con tuberías si ves que meterlo todo en una única expresión regular se te antoja complicado. 
