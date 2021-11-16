@@ -56,10 +56,23 @@ Con este comando le decimos a grep que busque aquellas palabras que empiecen por
 
 5. Todas las palabras que no empiezan por `t` y acaban por `s`. (ordenadas por número de línea)
 
+El comando final empleado ha sido el siguiente: 
 
-`grep -Eio "[^(t)]a\w+s" aquella_voluntad.txt -n|sort -n`
+`grep -Eionw "[a-z^t]\w+s\b" aquella_voluntad.txt |sort -n`
 
-grep -Eion '\b[^t]\w*s\b' aquella_voluntad.txt |sort -n
+Ahora procedo a explicarlo por partes:
+En primer lugar los flags que le ponemos a grep son los siguientes: 
+- El flag `-E`(extended) indica a `grep`que use  ERE (Expresiones Regulares Extendidas). 
+- El flag `-i` para una búsqueda case-insensitive, lo que quiere decir que buscará tanto mayúsculas como minúsculas. 
+- El flag `-o` para que imprima por pantalla las líneas coincidentes, palabras que coinciden con la expresión regular que hemos puesto.
+- El flag `-n`indica a grep que nos de el número de línea de cada palabra que encontremos (esto lo hacemos para que finalmente con `sort -n`nos ordene todo. 
+- El flag `-w`es para que grep seleccione solo aquellas líneas que contengan coincidencias que formen palabras completas. 
+
+Después de esto ponemos una expresión regular para que solo nos seleccione aquellas palabras que no empiecen por t. Para ello abrimos corchetes y le ponemos la clase de caracteres con las que queremos que case. Por lo que ponemos `[a-z^t]`lo que quiere decir que case con cualquier letra (tanto mayúscula como minúscula dado que hemos fluesto el flag `-i` en grep) y que empiece por la letra t`^t`. Tras esto le decimos que case con una o mas ocurrencias `+` de un caracter tipo letra `w`(letra, dígito o guiónbajo) y por último le decimos que acabe con s`\w+s`. Finalmente ponemos una `\b` al final indica que la palabra tiene que estar seguida de un caracter que no sea de tipo letra (un separador o espacio). 
+
+![ej1apartado5](images/ej1apartado5.png)
+
+
 
 6. Todas las palabras que empiezan y acaban por la misma letra (volver a este punto al acabar toda la lección). 
 Este ejercicio lo podríamos hacer con grupos de captura. 
