@@ -69,16 +69,27 @@ En primer lugar los flags que le ponemos a grep son los siguientes:
 - El flag `-w`es para que grep seleccione solo aquellas líneas que contengan coincidencias que formen palabras completas. 
 
 Después de esto ponemos una expresión regular para que solo nos seleccione aquellas palabras que no empiecen por t. Para ello abrimos corchetes y le ponemos la clase de caracteres con las que queremos que case. Por lo que ponemos `[a-z^t]`lo que quiere decir que case con cualquier letra (tanto mayúscula como minúscula dado que hemos fluesto el flag `-i` en grep) y que empiece por la letra t`^t`. Tras esto le decimos que case con una o mas ocurrencias `+` de un caracter tipo letra `w`(letra, dígito o guiónbajo) y por último le decimos que acabe con s`\w+s`. Finalmente ponemos una `\b` al final indica que la palabra tiene que estar seguida de un caracter que no sea de tipo letra (un separador o espacio). 
+Finalmente como ya hemos mencionado antes, para ordenar las palabras por el orden de la fila en la que están empleamos `sort -n`
 
 ![ej1apartado5](images/ej1apartado5.png)
 
 
 
 6. Todas las palabras que empiezan y acaban por la misma letra (volver a este punto al acabar toda la lección). 
-Este ejercicio lo podríamos hacer con grupos de captura. 
 
+Este ejercicio lo tendríamos que hacer empleando grupos de captura, porque si no tendríamos que ir letra a letra. 
+El comando empleado sería: 
+`grep -Eiow "([a-z])\w+\1" aquella_voluntad.txt`
 
-### Respuesta ejercicio 1
+Al igual que antes vamos a explicar el comando poco a poco. 
+En primer lugar los flags que le ponemos a grep son los siguientes: 
+- El flag `-E`(extended) indica a `grep`que use  ERE (Expresiones Regulares Extendidas). 
+- El flag `-i` para una búsqueda case-insensitive, lo que quiere decir que buscará tanto mayúsculas como minúsculas. 
+- El flag `-o` para que imprima por pantalla las líneas coincidentes, palabras que coinciden con la expresión regular que hemos puesto.
+- El flag `-w`es para que grep seleccione solo aquellas líneas que contengan coincidencias que formen palabras completas.
+Tras esto vamos a empezar a explicar las expresiones regulares usadas y el grupo de captura empleado que sería `([a-z])`, lo que quiere decir que la palabra tiene que empezar por una letra de la a a la z, tanto mayúscula como mínúscula, tras esto tendría que casar con una o mas ocurrencias `+` de un caracter tipo letra `w`(letra, dígito o guiónbajo) `\w+` y finalmente le diremos que tiene que finalizar de la misma forma que el grupo de captura que hemos nombrado `1`. Por lo que tendrá que acabar por la misma letra de la a a la z con la que acabe el grupo de captura 1.  
+
+![ej1apartado6](images/ej1apartado6.png)
 
 
 ## Ejercicio 2
