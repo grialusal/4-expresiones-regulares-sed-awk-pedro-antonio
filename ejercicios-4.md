@@ -62,7 +62,7 @@ Con este comando le decimos a grep que busque aquellas palabras que empiecen por
 grep -Eion '\b[^t]\w*s\b' aquella_voluntad.txt |sort -n
 
 6. Todas las palabras que empiezan y acaban por la misma letra (volver a este punto al acabar toda la lección). 
-
+Este ejercicio lo podríamos hacer con grupos de captura. 
 
 
 ### Respuesta ejercicio 1
