@@ -116,8 +116,7 @@ Finalmente, para para ver si existen otros gene_ids con muchos números seguidos
 
 ![number-repeat](images/number-repeat.PNG)
 
-Para comprobar cuántos gene_id con muchos números seguidos iguales exiten en el caso de Humano, hemos introducido el siguiente pipeline: `zgrep -Eo 'gene_id "[^"]*"' Homo_sapiens.GRCh38.102.gtf.gz | grep -Eoc 'gene_id ".*(0{2,}|1{2,}|2{2,}|3{2,}|4{2,}|5{2,}|6{2,}|7{2,}|8{2,}|9{2,
-}).*"'`, en este caso existen 3010595 gene_id con números iguales repetidos 2 o más veces, este número coincide con el de gene_id que tienen 2 o más ceros, por lo tanto podemos deducir que no hay gene_id en este documento que tengan números iguales seguidos dos o más veces que sean distintos a 0.
+Para comprobar cuántos gene_id con muchos números seguidos iguales exiten en el caso de Humano, hemos introducido el siguiente pipeline: `zgrep -Eo 'gene_id "[^"]*"' Homo_sapiens.GRCh38.102.gtf.gz | grep -Eoc 'gene_id ".*(0{2,}|1{2,}|2{2,}|3{2,}|4{2,}|5{2,}|6{2,}|7{2,}|8{2,}|9{2,}).*"'`, en este caso existen 3010595 gene_id con números iguales repetidos 2 o más veces, este número coincide con el de gene_id que tienen 2 o más ceros, por lo tanto podemos deducir que no hay gene_id en este documento que tengan números iguales seguidos dos o más veces que sean distintos a 0.
 
 ## Ejercicio 3
 
