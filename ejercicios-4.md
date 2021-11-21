@@ -151,3 +151,41 @@ Si lo queremos hacer en un pipe con distintas llamadas a sed lo haríamos así:
 
 
 ![echoSedE](images/echoSedE.png)
+
+
+# CORRECCIONES
+1.
+ 1.-	El resultado está bien, aunque no hacía falta el flag `-E`.
+ 
+ 2.-	Bien, como sugerencia comentar que también se podría hacer con `[oa]$`
+ 
+ 3.-	Este debería dar 57 líneas, no sé por qué os sale alguna más 🤔 nosotras también lo hicimos con awk, pero con la operación módulo.
+ `awk 'NR%2==0'`
+ otra forma sería con grep:
+ `grep -n [oa]$ aquella_voluntad.txt | grep -c "[02468]:"`
+ 
+ 4.-	Bien 👍
+ 
+ 5.-	Bien también, y genial por usar el flag `-w` 
+ 
+ 6.-	Bien 👍
+
+
+**NOTA: 2,3/2,5** 
+
+2.  La primera parte del ejercicio está bien, y lo de adjuntar el .txt es un detalle, aunque la segunda parte es una locura ~~y eso que nosotras lo teníamos así en un principio~~. Más simple:
+`grep -E ".*([1-9])\1{3}"` en lugar de la lista de números.
+
+**NOTA: 2,2/2,5**
+
+3. Como habéis usado un fasta de una única secuencia es más complicado de evaluar. Algunos puntos importantes serían, por ejemplo, haber logrado imprimir nombre y número de caracteres con una misma orden o pipeline, no “por separado”, y haber utilizado ordenes más genéricas en lugar de especificar [ATGCN], para que pudiera ser extrapolable (por ejemplo, en el archivo de covid-samples.fasta las secuencias tenían algún que otro guión bajo). Tendréis (en realidad tendremos todos) que echar un vistazo a las correcciones oficiales
+
+**NOTA: 1/2,5**
+
+4. Como lo hicimos en clase, nada que objetar 👍
+
+
+**NOTA: 2,5/2,5
+Total: 8/10**
+
+
